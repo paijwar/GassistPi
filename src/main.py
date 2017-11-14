@@ -79,12 +79,13 @@ class MyAssistant(object):
             self._can_start_conversation = True
             # Start the voicehat button trigger.
             if not GPIO.input(24):
-                (self._on_button_pressed)
+                self._on_button_pressed()
             if sys.stdout.isatty():
                 print('Say "OK, Google" or press the button, then speak. '
                       'Press Ctrl+C to quit...')
 
         elif event.type == EventType.ON_CONVERSATION_TURN_STARTED:
+            subprocess.Popen(["aplay", "/home/pi/GassistPi/sample-audio-files/Fb.wav"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             self._can_start_conversation = False
             
 
